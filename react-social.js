@@ -76,8 +76,8 @@
 
   var Count = {
     propTypes: {
-      element: React.PropTypes.string
-      , url: React.PropTypes.string
+      element: React.PropTypes.string,
+      url: React.PropTypes.string
     }
 
     , getDefaultProps: function () {
@@ -153,6 +153,7 @@
       , media: React.PropTypes.string
       , message: React.PropTypes.string
       , onClick: React.PropTypes.func
+      , appId: React.PropTypes.string
     }
 
     , getDefaultProps: function () {
@@ -168,6 +169,7 @@
         , media: ""
         , message: ""
         , onClick: function () { }
+        , appId: ""
       };
     }
 
@@ -246,7 +248,7 @@
 
     , constructUrl: function () {
       return "https://www.facebook.com/dialog/feed?"
-             + "app_id=145634995501895"
+             + "app_id=" + this.props.appId
              + "&display=popup&caption=" + encodeURIComponent(this.props.message)
              + "&link=" + encodeURIComponent(this.props.url)
              + "&redirect_uri=" + encodeURIComponent("https://www.facebook.com/")
