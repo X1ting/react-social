@@ -154,6 +154,7 @@
       , message: React.PropTypes.string
       , onClick: React.PropTypes.func
       , appId: React.PropTypes.string
+      , description: React.PropTypes.string
     }
 
     , getDefaultProps: function () {
@@ -248,7 +249,7 @@
 
     , constructUrl: function () {
       return "https://www.facebook.com/dialog/feed?"
-             + "app_id=" + this.props.appId
+             + "app_id=" + encodeURIComponent(this.props.appId)
              + "&display=popup&caption=" + encodeURIComponent(this.props.message)
              + "&link=" + encodeURIComponent(this.props.url)
              + "&redirect_uri=" + encodeURIComponent("https://www.facebook.com/")
@@ -296,7 +297,11 @@
       mixins: [Button]
 
     , constructUrl: function () {
-        return "http://vk.com/share.php?url=" + encodeURIComponent(this.props.url);
+        var url = "http://vk.com/share.php?url="
+                 + encodeURIComponent(this.props.url)
+                 + "&title=" + encodeURIComponent(this.props.message)
+                 + "&description=" + encodeURIComponent(this.props.description);
+        return url;
     }
   });
 
